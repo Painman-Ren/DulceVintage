@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<title>Positioning Practice</title>
+</head>
+<body >
+    <form>
+        <input type="text" name="mail">
+        <input type="text" name="mai_ver">
+        <input type="text" name="password">
+         <input type="text" name="password_ver">
+        <input type="sumit" name="" value="sin_up">
+    </form>
+    <span id="ayuda">ayuda</span>
+<div class="content" style="display:none;">
+  <div id="header"></div>
+<div id="text" ></div>
+<div id="status" ></div>
+
+</div>
+<div id="brute" >
+  
+
+
+</div>
+
+
+
+</body>
+<script  src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    $('#ayuda').click(
+        function () {
+
+
+            $.ajax({
+
+                url: " https://api.github.com/users/painman-ren",
+                headers: {
+                    'Authorization': 'token 7adea074acbcdf500f09714061fe2b18f76b1183',
+                    'If-None-Match': 'W/"c296ad75da418a63ca3f7f0a9f5b307b"',
+                },
+                method: 'GET',
+                /*data:JSON.stringify({
+                  'title': 'Desarrollo Mundo_1',
+                  'body': 'Es de vital importancia avanzar en el desarrollo del Mundo_1 @painman-ren',
+                  'assignees': ['painman-ren'],
+                  'labels': ["enhancement"],
+                }),*/
+                processData: false,
+                success: function (data, textStatus, request) {
+                    $('#status').html(request.status + ' ' + textStatus);
+                    var html_content_header = "";
+                    if (data != null && data != 'undefined') {
+                        var obj_header = request.getAllResponseHeaders();
+                        $('#header').html(request.getAllResponseHeaders());
+                        var html_content_text = "";
+                        Object.getOwnPropertyNames(data).forEach(
+                            function (val, idx, array) {
+                                if (typeof data[val] == 'object' && data[val] != null && data[val] != 'undefined') {
+                                    var content_var = '<div class="data_row"><span class="name_p">' + val + ' : </span><div class=".p_c">';
+                                    html_content_text = html_content_text + content_var;
+                                    Object.getOwnPropertyNames(data[val]).forEach(
+                                        function (val_P_val, idx, array) {
+                                            html_content_text = html_content_text + '<span class="data_row"><span class="sub_data_row_name_p">' + val_P_val + ' : </span><span class="p_c">' + data[val][val_P_val] + '</span></span>';
+                                        }
+                                    );
+                                    html_content_text = html_content_text + '</div></div>';
+                                } else {
+                                    html_content_text = html_content_text + '<span class="data_row"><span class="name_p">' + val + ' : </span><span class="p_c">' + data[val] + '</span></span>';
+                                }
+                            }
+                        );
+                        $('#text').html(html_content_text);
+                    } else {
+                        $('#text').html(data);
+                    }
+                    $(".content").show("slow",null);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.status);
+                }
+            });
+
+           
+        }
+    );
+	
+
+
+
+
+
+</script>
+
+
+
+</html>

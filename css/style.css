@@ -1,0 +1,38 @@
+*{
+	padding: 0;
+	margin: 0;
+	font-family: Roboto;
+}
+.content{
+	padding: 15px;
+	display: flex;
+	flex-direction: column-reverse;
+}
+.data_row{
+	display:flex;
+	align-items: flex-start;
+
+}
+.name_p{
+	color: blue;
+	 flex-shrink: 0;
+}
+.p_c{
+	color: purple;
+	display: flex;
+	flex-direction: column;
+}
+.sub_data_row_name_p{
+	
+	color:green ;
+	flex-shrink: 0;
+}
+#text{
+	 width: 100%; padding: 15px; display:flex;flex-direction: column; flex-direction: column-reverse;
+}
+#header{
+	color:red; width: 100%; padding: 15px; border-top: solid #888 2px;
+}
+#status{
+	color:#09b365; width: 100%; padding: 15px; border-bottom: solid #888 2px;
+}
